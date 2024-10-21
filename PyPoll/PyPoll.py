@@ -15,9 +15,8 @@ infile_path_pypoll = os.path.join("Resources", infile_pypoll)
 outfile_path_pypoll = os.path.join("Analysis", outfile_pypoll)
 
 # define variables for analysis
-total_votes = 0
-name_counts = {}
 id_values = []
+name_counts = {}
 
 # ---------------------------
 # read and analyze input file
@@ -40,13 +39,9 @@ try:
         # read through each row of data
         for row in reader:
 
-            # capture voter ID and candidate name
-            #voter_id = row[0]
+            # capture voter IDs and candidate name
             id_values.append(row[0])
             name = row[2]
-
-            # increment total votes value
-            total_votes += 1
 
             # count each candidate's name's occurence
             if name in name_counts:
@@ -57,7 +52,7 @@ try:
                 name_counts[name] = 1
     
     # check for duplicate voter id values
-    if total_votes > len(set(id_values)):
+    if len(id_values) > len(set(id_values)):
         # raise error if duplicate ids found
         raise ValueError
     
@@ -72,7 +67,8 @@ try:
     print("-------------------------------------------------------")
 
     # display total votes
-    print(f"Total Votes: {total_votes:,}\n\n")
+    total_votes = len(id_values)
+    print(f"Total Votes: {len(id_values):,}\n\n")
 
     # calculate voting results per candidate
     for name, count in name_counts.items():
@@ -90,10 +86,13 @@ try:
 
 # error messages when trying to read/analyze input file
 except FileNotFoundError:
+    # input file not found
     print(f"FileNotFoundError: Input CSV file, {infile_pypoll}, not found.")
 except ValueError:
+    # duplicate voter ids found
     print("ValueError: Duplicate voter IDs found.")
 except:
+    # something else went wrong
     print("Error: Something went wrong during input file process. Try checking input file.")
 
 
