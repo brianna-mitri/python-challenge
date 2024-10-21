@@ -106,7 +106,7 @@ try:
     # open output file using "write" mode
     with open(outfile_path_pybank, 'w', newline='') as outfile:
 
-        # write fincial analysis onto output file
+        # write financial analysis onto output file
         outfile.write("-------------------------------------------------------\n")
         outfile.write(f"{"Financial Analysis".center(output_width)}\n")
         outfile.write("-------------------------------------------------------\n")
