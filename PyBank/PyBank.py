@@ -6,7 +6,7 @@ import csv
 # setup file paths & analysis
 # ---------------------------
 
-# define files needed (input then output file)
+# define existing input file and desired output file 
 infile_pybank = "budget_data.csv"
 outfile_pybank = "pybank_output.txt"
 
@@ -33,7 +33,7 @@ try:
     # check if analysis folder exists and create one if it doesn't
     os.makedirs("Analysis", exist_ok = True)
 
-    # open input file using "read" mode and open output file using "write" mode
+    # open input file using "read" mode
     with open(infile_path_pybank, 'r', newline='') as infile:
 
         # read input file
@@ -89,7 +89,7 @@ except FileNotFoundError:
     print(f"FileNotFoundError: Input CSV file, {infile_pybank}, not found.")
 except TypeError:
     # if a profit value isn't a number
-    print(f"TypeError: Make sure profit values are numerical.")
+    print("TypeError: Make sure profit values are numerical.")
 except:
     # something else went wrong
     print("Error: Something went wrong during input file process. Try checking input file.")
@@ -103,6 +103,7 @@ try:
     # check if analysis folder exists and create one if it doesn't
     os.makedirs("Analysis", exist_ok = True)
 
+    # open output file using "write" mode
     with open(outfile_path_pybank, 'w', newline='') as outfile:
 
         # write fincial analysis onto output file
