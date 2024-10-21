@@ -29,9 +29,6 @@ try:
     # if input file doesn't exist then raise error
     if not os.path.exists(infile_path_pybank):
         raise FileNotFoundError
-    
-    # check if analysis folder exists and create one if it doesn't
-    os.makedirs("Analysis", exist_ok = True)
 
     # open input file using "read" mode
     with open(infile_path_pybank, 'r', newline='') as infile:
