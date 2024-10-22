@@ -77,7 +77,7 @@ except TypeError:
     print("TypeError: Make sure profit values are numerical.")
 except:
     # something else went wrong
-    print("Error: Something went wrong during input file process. Try checking input file.")
+    print("Input/Analysis Error: Something went wrong during input file process. Try checking input file.")
 
 
 # -----------------------------------------------------
@@ -124,4 +124,4 @@ try:
 
 except:
     # error occured
-    print("Something went wrong during output process. Please check accordingly.")
+    print("Output Error: Something went wrong during output process. Please check accordingly.")
