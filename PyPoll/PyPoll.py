@@ -56,6 +56,23 @@ try:
         # raise error if duplicate ids found
         raise ValueError
     
+# error messages when trying to read/analyze input file
+except FileNotFoundError:
+    # input file not found
+    print(f"FileNotFoundError: Input CSV file, {infile_pypoll}, not found.")
+except ValueError:
+    # duplicate voter ids found
+    print("ValueError: Duplicate voter IDs found.")
+except:
+    # something else went wrong
+    print("Error: Something went wrong during input file process. Try checking input file.")
+
+
+# -----------------------------------------------------
+# print output to terminal and create/write output file
+# -----------------------------------------------------
+
+try:
     # --------------------------
     # print analysis to terminal
     # --------------------------
@@ -68,7 +85,7 @@ try:
 
     # display total votes
     total_votes = len(id_values)
-    print(f"Total Votes: {len(id_values):,}\n\n")
+    print(f"Total Votes: {total_votes:,}\n\n")
 
     # calculate voting results per candidate
     for name, count in name_counts.items():
@@ -84,16 +101,35 @@ try:
     print(f"\n\nWinner: {winner}")
     print("-------------------------------------------------------")
 
-# error messages when trying to read/analyze input file
-except FileNotFoundError:
-    # input file not found
-    print(f"FileNotFoundError: Input CSV file, {infile_pypoll}, not found.")
-except ValueError:
-    # duplicate voter ids found
-    print("ValueError: Duplicate voter IDs found.")
+    # ------------------------
+    # create/write output file
+    # ------------------------
+
+    # check if analysis folder exists and create one if it doesn't
+    os.makedirs("Analysis", exist_ok=True)
+
+    # open output file using "write" mode
+    with open(outfile_path_pypoll, 'w', newline='') as outfile:
+
+        # write election results onto output file
+        outfile.write("-------------------------------------------------------\n")
+        outfile.write(f"{"Election Results".center(output_width)}\n")
+        outfile.write("-------------------------------------------------------\n")
+        outfile.write(f"Total Votes: {total_votes:,}\n\n\n")
+
+        # calculate voting results per candidate
+        for name, count in name_counts.items():
+
+            # calculate percentage of votes
+            vote_percent = (count/total_votes)*100
+
+            # write candidate's voting result
+            outfile.write(f"{name}: {vote_percent:.3f}% ({count:,})\n")
+
+        outfile.write(f"\n\nWinner: {winner}\n")
+        outfile.write("-------------------------------------------------------")
+
 except:
-    # something else went wrong
-    print("Error: Something went wrong during input file process. Try checking input file.")
+    # error occured
+    print("Something went wrong during output process. Please check accordingly.")
 
-
-# write output file
