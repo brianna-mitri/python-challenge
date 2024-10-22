@@ -38,8 +38,8 @@ Winner: Diana DeGette
 These error messages are printed depending on the following issues:
 - **FileNotFoundError:** shows if input file isn't found so double check file path.
 - **ValueError:** shows with unexpected input data formats.
-    - PyBank: profit/loss column values aren't all numbers.
-    - PyPoll: duplicate voter ID column values found.
+    - ***PyBank:*** profit/loss column values aren't all numbers.
+    - ***PyPoll:*** duplicate voter ID column values found.
 - **Input/Analysis Error:** something went wrong during input/analysis process.
 - **Output Error:** something when during the output process (outputting analysis into the text file and terminal).
 
@@ -48,15 +48,15 @@ To prevent a FileNotFoundError for the output file, the following code has been 
 
 ## Expected Data Format
 The input csv files are expected to have a header row and the following columns:
-- **PyBank's input file:** Date column (monthly dates in chronological order), Profit/Loss column (only digit values with - for negatives).
-- **PyPoll's input file:** Voter ID column (first column with unique values), Candidate's Name column (third column).
+- **PyBank's input file:** *Date column* (monthly dates in chronological order), *Profit/Loss column* (only digit values with - for negatives).
+- **PyPoll's input file:** *Voter ID column* (first column with unique values), *Candidate's Name column* (third column).
 
 ## Files
-For the Python scripts to work the files are expected to be in the following format within their respective PyBank and PyPoll folders:
-- Analysis[^1]
-    - output_file.txt
-- Resources
-    - input_file.csv
-- main.py
+For the Python scripts to work the files are expected to be in the following format within their respective *PyBank* and *PyPoll* folders:
+- **Analysis**[^1]
+    - **output_file.txt**
+- **Resources**
+    - **input_file.csv**
+- **main.py**
 
 [^1]: Analysis folder and output_file.txt don't need to be created before running the script. The script should generate them both.
