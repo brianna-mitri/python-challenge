@@ -68,18 +68,6 @@ try:
         max_change_month, max_change = max(profit_changes, key=lambda x: x[1])
         min_change_month, min_change = min(profit_changes, key=lambda x: x[1])
 
-        # print financial analysis
-        output_width = 55
-        print("-------------------------------------------------------")
-        print("Financial Analysis".center(output_width))
-        print("-------------------------------------------------------")
-        print(f"Total Months: {total_months}")
-        print(f"Total Profit/Loss: ${total_profit:,.2f}")
-        print(f"Average Change: ${avg_change:,.2f}")
-        print(f"Greatest Increase in Profits: {max_change_month} (${max_change:,.2f})")
-        print(f"Greatest Decrease in Profits: {min_change_month} (${min_change:,.2f})")
-        print("-------------------------------------------------------")
-
 # error messages when trying to read/analyze input file
 except FileNotFoundError:
     # if input file isn't found show error
@@ -92,11 +80,31 @@ except:
     print("Error: Something went wrong during input file process. Try checking input file.")
 
 
-# -----------------------------
-# write analysis to output file
-# -----------------------------
+# -----------------------------------------------------
+# print output to terminal and create/write output file
+# -----------------------------------------------------
 
 try:
+    # --------------------------
+    # print analysis to terminal
+    # --------------------------
+
+    # print financial analysis
+    output_width = 55
+    print("-------------------------------------------------------")
+    print("Financial Analysis".center(output_width))
+    print("-------------------------------------------------------")
+    print(f"Total Months: {total_months}")
+    print(f"Total Profit/Loss: ${total_profit:,.2f}")
+    print(f"Average Change: ${avg_change:,.2f}")
+    print(f"Greatest Increase in Profits: {max_change_month} (${max_change:,.2f})")
+    print(f"Greatest Decrease in Profits: {min_change_month} (${min_change:,.2f})")
+    print("-------------------------------------------------------")
+
+    # ------------------------
+    # create/write output file
+    # ------------------------
+
     # check if analysis folder exists and create one if it doesn't
     os.makedirs("Analysis", exist_ok = True)
 
@@ -112,7 +120,7 @@ try:
         outfile.write(f"Average Change: ${avg_change:,.2f}\n")
         outfile.write(f"Greatest Increase in Profits: {max_change_month} (${max_change:,.2f})\n")
         outfile.write(f"Greatest Decrease in Profits: {min_change_month} (${min_change:,.2f})\n")
-        outfile.write("-------------------------------------------------------\n")
+        outfile.write("-------------------------------------------------------")
 
 except:
     # error occured
